@@ -17,10 +17,6 @@
     "image",
     "video"
   ],
-  "scripts": {
-    "preinstall": "bash setup-ssh.sh",
-    "postinstall": "bash cleanup-ssh.sh"
-  },
   "dependencies":{
     "svift-render-bundle": "git+ssh://git@bitbucket.org:svift/render-bundle-module.git",
     "svift-render-svg": "git+ssh://git@bitbucket.org:svift/render-svg-module.git"

@@ -34,12 +34,13 @@ var render = (function () {
   module.renderCallback = function () {
     rendererCCount++;
     if(rendererCCount >= rendererCount){
+      console.log('render complete');
       renderBundle.bundle(module.bundleCallback);
     }
   };
 
   module.bundleCallback = function () {
-    console.log('everything done')
+    console.log('everything done');
   };
  
   return module;
