@@ -1,0 +1,240 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'install' ]
+2 info using npm@3.10.9
+3 info using node@v6.9.2
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly fetchOtherPackageData svift-render-bundle@git+ssh://git@bitbucket.org/svift/render-bundle-module.git
+20 silly cache add args [ 'svift-render-bundle@git+ssh://git@bitbucket.org/svift/render-bundle-module.git',
+20 silly cache add   null ]
+21 verbose cache add spec svift-render-bundle@git+ssh://git@bitbucket.org/svift/render-bundle-module.git
+22 silly fetchOtherPackageData svift-render-svg@git+ssh://git@bitbucket.org/svift/render-svg-module.git
+23 silly cache add args [ 'svift-render-svg@git+ssh://git@bitbucket.org/svift/render-svg-module.git',
+23 silly cache add   null ]
+24 verbose cache add spec svift-render-svg@git+ssh://git@bitbucket.org/svift/render-svg-module.git
+25 silly cache add parsed spec Result {
+25 silly cache add   raw: 'svift-render-bundle@git+ssh://git@bitbucket.org/svift/render-bundle-module.git',
+25 silly cache add   scope: null,
+25 silly cache add   escapedName: 'svift-render-bundle',
+25 silly cache add   name: 'svift-render-bundle',
+25 silly cache add   rawSpec: 'git+ssh://git@bitbucket.org/svift/render-bundle-module.git',
+25 silly cache add   spec: 'git+ssh://git@bitbucket.org/svift/render-bundle-module.git',
+25 silly cache add   type: 'hosted',
+25 silly cache add   hosted:
+25 silly cache add    { type: 'bitbucket',
+25 silly cache add      ssh: 'git@bitbucket.org:svift/render-bundle-module.git',
+25 silly cache add      sshUrl: 'git+ssh://git@bitbucket.org/svift/render-bundle-module.git',
+25 silly cache add      httpsUrl: 'git+https://bitbucket.org/svift/render-bundle-module.git',
+25 silly cache add      gitUrl: undefined,
+25 silly cache add      shortcut: 'bitbucket:svift/render-bundle-module',
+25 silly cache add      directUrl: 'https://bitbucket.org/svift/render-bundle-module/raw/master/package.json' } }
+26 verbose addRemoteGit caching git+ssh://git@bitbucket.org/svift/render-bundle-module.git
+27 verbose addRemoteGit git+ssh://git@bitbucket.org/svift/render-bundle-module.git is a repository hosted by bitbucket
+28 silly tryClone cloning git+ssh://git@bitbucket.org/svift/render-bundle-module.git via git+ssh://git@bitbucket.org/svift/render-bundle-module.git
+29 verbose tryClone git-ssh-git-bitbucket-org-svift-render-bundle-module-git-d627e893 not in flight; caching
+30 verbose correctMkdir /Users/sebastianmeier/.npm/_git-remotes correctMkdir not in flight; initializing
+31 silly cache add parsed spec Result {
+31 silly cache add   raw: 'svift-render-svg@git+ssh://git@bitbucket.org/svift/render-svg-module.git',
+31 silly cache add   scope: null,
+31 silly cache add   escapedName: 'svift-render-svg',
+31 silly cache add   name: 'svift-render-svg',
+31 silly cache add   rawSpec: 'git+ssh://git@bitbucket.org/svift/render-svg-module.git',
+31 silly cache add   spec: 'git+ssh://git@bitbucket.org/svift/render-svg-module.git',
+31 silly cache add   type: 'hosted',
+31 silly cache add   hosted:
+31 silly cache add    { type: 'bitbucket',
+31 silly cache add      ssh: 'git@bitbucket.org:svift/render-svg-module.git',
+31 silly cache add      sshUrl: 'git+ssh://git@bitbucket.org/svift/render-svg-module.git',
+31 silly cache add      httpsUrl: 'git+https://bitbucket.org/svift/render-svg-module.git',
+31 silly cache add      gitUrl: undefined,
+31 silly cache add      shortcut: 'bitbucket:svift/render-svg-module',
+31 silly cache add      directUrl: 'https://bitbucket.org/svift/render-svg-module/raw/master/package.json' } }
+32 verbose addRemoteGit caching git+ssh://git@bitbucket.org/svift/render-svg-module.git
+33 verbose addRemoteGit git+ssh://git@bitbucket.org/svift/render-svg-module.git is a repository hosted by bitbucket
+34 silly tryClone cloning git+ssh://git@bitbucket.org/svift/render-svg-module.git via git+ssh://git@bitbucket.org/svift/render-svg-module.git
+35 verbose tryClone git-ssh-git-bitbucket-org-svift-render-svg-module-git-ab151399 not in flight; caching
+36 verbose correctMkdir /Users/sebastianmeier/.npm/_git-remotes correctMkdir already in flight; waiting
+37 info git [ 'config', '--get', 'remote.origin.url' ]
+38 info git [ 'config', '--get', 'remote.origin.url' ]
+39 silly validateExistingRemote git+ssh://git@bitbucket.org/svift/render-bundle-module.git remote.origin.url: ssh://git@bitbucket.org/svift/render-bundle-module.git
+40 verbose validateExistingRemote git+ssh://git@bitbucket.org/svift/render-bundle-module.git is updating existing cached remote /Users/sebastianmeier/.npm/_git-remotes/git-ssh-git-bitbucket-org-svift-render-bundle-module-git-d627e893
+41 silly validateExistingRemote git+ssh://git@bitbucket.org/svift/render-svg-module.git remote.origin.url: ssh://git@bitbucket.org/svift/render-svg-module.git
+42 verbose validateExistingRemote git+ssh://git@bitbucket.org/svift/render-svg-module.git is updating existing cached remote /Users/sebastianmeier/.npm/_git-remotes/git-ssh-git-bitbucket-org-svift-render-svg-module-git-ab151399
+43 info git [ 'fetch', '-a', 'origin' ]
+44 info git [ 'fetch', '-a', 'origin' ]
+45 verbose updateRemote git fetch -a origin (ssh://git@bitbucket.org/svift/render-svg-module.git)
+46 verbose correctMkdir /Users/sebastianmeier/.npm/_git-remotes correctMkdir not in flight; initializing
+47 verbose setPermissions git+ssh://git@bitbucket.org/svift/render-svg-module.git set permissions on /Users/sebastianmeier/.npm/_git-remotes/git-ssh-git-bitbucket-org-svift-render-svg-module-git-ab151399
+48 verbose resolveHead git+ssh://git@bitbucket.org/svift/render-svg-module.git original treeish: master
+49 info git [ 'rev-list', '-n1', 'master' ]
+50 silly resolveHead git+ssh://git@bitbucket.org/svift/render-svg-module.git resolved treeish: ee47ab74b5366143624270943f3755c287337ced
+51 verbose resolveHead git+ssh://git@bitbucket.org/svift/render-svg-module.git resolved Git URL: git+ssh://git@bitbucket.org/svift/render-svg-module.git#ee47ab74b5366143624270943f3755c287337ced
+52 silly resolveHead Git working directory: /var/folders/05/vqtqq3rd53l4j48gvmv3yv380000gn/T/npm-15648-657b3e13/git-cache-d18262b4/ee47ab74b5366143624270943f3755c287337ced
+53 info git [ 'clone',
+53 info git   '/Users/sebastianmeier/.npm/_git-remotes/git-ssh-git-bitbucket-org-svift-render-svg-module-git-ab151399',
+53 info git   '/var/folders/05/vqtqq3rd53l4j48gvmv3yv380000gn/T/npm-15648-657b3e13/git-cache-d18262b4/ee47ab74b5366143624270943f3755c287337ced' ]
+54 verbose cloneResolved git+ssh://git@bitbucket.org/svift/render-svg-module.git clone Cloning into '/var/folders/05/vqtqq3rd53l4j48gvmv3yv380000gn/T/npm-15648-657b3e13/git-cache-d18262b4/ee47ab74b5366143624270943f3755c287337ced'...
+54 verbose cloneResolved done.
+55 info git [ 'checkout', 'ee47ab74b5366143624270943f3755c287337ced' ]
+56 verbose checkoutTreeish git+ssh://git@bitbucket.org/svift/render-svg-module.git checkout Note: checking out 'ee47ab74b5366143624270943f3755c287337ced'.
+56 verbose checkoutTreeish
+56 verbose checkoutTreeish You are in 'detached HEAD' state. You can look around, make experimental
+56 verbose checkoutTreeish changes and commit them, and you can discard any commits you make in this
+56 verbose checkoutTreeish state without impacting any branches by performing another checkout.
+56 verbose checkoutTreeish
+56 verbose checkoutTreeish If you want to create a new branch to retain commits you create, you may
+56 verbose checkoutTreeish do so (now or later) by using -b with the checkout command again. Example:
+56 verbose checkoutTreeish
+56 verbose checkoutTreeish   git checkout -b new_branch_name
+56 verbose checkoutTreeish
+56 verbose checkoutTreeish HEAD is now at ee47ab7... package.json
+57 info git [ 'submodule', '-q', 'update', '--init', '--recursive' ]
+58 verbose updateSubmodules git+ssh://git@bitbucket.org/svift/render-svg-module.git submodule update
+59 verbose updateRemote git fetch -a origin (ssh://git@bitbucket.org/svift/render-bundle-module.git)
+60 verbose correctMkdir /Users/sebastianmeier/.npm/_git-remotes correctMkdir not in flight; initializing
+61 verbose addLocalDirectory /Users/sebastianmeier/.npm/render-svg-module/1.0.0/package.tgz not in flight; packing
+62 verbose correctMkdir /Users/sebastianmeier/.npm correctMkdir not in flight; initializing
+63 verbose tar pack [ '/Users/sebastianmeier/.npm/render-svg-module/1.0.0/package.tgz',
+63 verbose tar pack   '/var/folders/05/vqtqq3rd53l4j48gvmv3yv380000gn/T/npm-15648-657b3e13/git-cache-d18262b4/ee47ab74b5366143624270943f3755c287337ced' ]
+64 verbose tarball /Users/sebastianmeier/.npm/render-svg-module/1.0.0/package.tgz
+65 verbose folder /var/folders/05/vqtqq3rd53l4j48gvmv3yv380000gn/T/npm-15648-657b3e13/git-cache-d18262b4/ee47ab74b5366143624270943f3755c287337ced
+66 verbose setPermissions git+ssh://git@bitbucket.org/svift/render-bundle-module.git set permissions on /Users/sebastianmeier/.npm/_git-remotes/git-ssh-git-bitbucket-org-svift-render-bundle-module-git-d627e893
+67 verbose resolveHead git+ssh://git@bitbucket.org/svift/render-bundle-module.git original treeish: master
+68 info git [ 'rev-list', '-n1', 'master' ]
+69 silly resolveHead git+ssh://git@bitbucket.org/svift/render-bundle-module.git resolved treeish: af838d7a0c5f287c8174a90c5a75c526bb4da94e
+70 verbose resolveHead git+ssh://git@bitbucket.org/svift/render-bundle-module.git resolved Git URL: git+ssh://git@bitbucket.org/svift/render-bundle-module.git#af838d7a0c5f287c8174a90c5a75c526bb4da94e
+71 silly resolveHead Git working directory: /var/folders/05/vqtqq3rd53l4j48gvmv3yv380000gn/T/npm-15648-657b3e13/git-cache-97a058d5/af838d7a0c5f287c8174a90c5a75c526bb4da94e
+72 info git [ 'clone',
+72 info git   '/Users/sebastianmeier/.npm/_git-remotes/git-ssh-git-bitbucket-org-svift-render-bundle-module-git-d627e893',
+72 info git   '/var/folders/05/vqtqq3rd53l4j48gvmv3yv380000gn/T/npm-15648-657b3e13/git-cache-97a058d5/af838d7a0c5f287c8174a90c5a75c526bb4da94e' ]
+73 verbose addLocalTarball adding from inside cache /Users/sebastianmeier/.npm/render-svg-module/1.0.0/package.tgz
+74 verbose correctMkdir /Users/sebastianmeier/.npm correctMkdir not in flight; initializing
+75 verbose addRemoteGit data._from: git+ssh://git@bitbucket.org/svift/render-svg-module.git
+76 verbose addRemoteGit data._resolved: git+ssh://git@bitbucket.org/svift/render-svg-module.git#ee47ab74b5366143624270943f3755c287337ced
+77 silly cache afterAdd render-svg-module@1.0.0
+78 verbose afterAdd /Users/sebastianmeier/.npm/render-svg-module/1.0.0/package/package.json not in flight; writing
+79 verbose correctMkdir /Users/sebastianmeier/.npm correctMkdir not in flight; initializing
+80 verbose afterAdd /Users/sebastianmeier/.npm/render-svg-module/1.0.0/package/package.json written
+81 silly resolveWithNewModule render-svg-module@1.0.0 checking installable status
+82 verbose cloneResolved git+ssh://git@bitbucket.org/svift/render-bundle-module.git clone Cloning into '/var/folders/05/vqtqq3rd53l4j48gvmv3yv380000gn/T/npm-15648-657b3e13/git-cache-97a058d5/af838d7a0c5f287c8174a90c5a75c526bb4da94e'...
+82 verbose cloneResolved done.
+83 info git [ 'checkout', 'af838d7a0c5f287c8174a90c5a75c526bb4da94e' ]
+84 verbose checkoutTreeish git+ssh://git@bitbucket.org/svift/render-bundle-module.git checkout Note: checking out 'af838d7a0c5f287c8174a90c5a75c526bb4da94e'.
+84 verbose checkoutTreeish
+84 verbose checkoutTreeish You are in 'detached HEAD' state. You can look around, make experimental
+84 verbose checkoutTreeish changes and commit them, and you can discard any commits you make in this
+84 verbose checkoutTreeish state without impacting any branches by performing another checkout.
+84 verbose checkoutTreeish
+84 verbose checkoutTreeish If you want to create a new branch to retain commits you create, you may
+84 verbose checkoutTreeish do so (now or later) by using -b with the checkout command again. Example:
+84 verbose checkoutTreeish
+84 verbose checkoutTreeish   git checkout -b new_branch_name
+84 verbose checkoutTreeish
+84 verbose checkoutTreeish HEAD is now at af838d7... package.json
+85 info git [ 'submodule', '-q', 'update', '--init', '--recursive' ]
+86 verbose updateSubmodules git+ssh://git@bitbucket.org/svift/render-bundle-module.git submodule update
+87 verbose addLocalDirectory /Users/sebastianmeier/.npm/render-bundle-module/1.0.0/package.tgz not in flight; packing
+88 verbose correctMkdir /Users/sebastianmeier/.npm correctMkdir not in flight; initializing
+89 verbose tar pack [ '/Users/sebastianmeier/.npm/render-bundle-module/1.0.0/package.tgz',
+89 verbose tar pack   '/var/folders/05/vqtqq3rd53l4j48gvmv3yv380000gn/T/npm-15648-657b3e13/git-cache-97a058d5/af838d7a0c5f287c8174a90c5a75c526bb4da94e' ]
+90 verbose tarball /Users/sebastianmeier/.npm/render-bundle-module/1.0.0/package.tgz
+91 verbose folder /var/folders/05/vqtqq3rd53l4j48gvmv3yv380000gn/T/npm-15648-657b3e13/git-cache-97a058d5/af838d7a0c5f287c8174a90c5a75c526bb4da94e
+92 verbose addLocalTarball adding from inside cache /Users/sebastianmeier/.npm/render-bundle-module/1.0.0/package.tgz
+93 verbose correctMkdir /Users/sebastianmeier/.npm correctMkdir not in flight; initializing
+94 verbose addRemoteGit data._from: git+ssh://git@bitbucket.org/svift/render-bundle-module.git
+95 verbose addRemoteGit data._resolved: git+ssh://git@bitbucket.org/svift/render-bundle-module.git#af838d7a0c5f287c8174a90c5a75c526bb4da94e
+96 silly cache afterAdd render-bundle-module@1.0.0
+97 verbose afterAdd /Users/sebastianmeier/.npm/render-bundle-module/1.0.0/package/package.json not in flight; writing
+98 verbose correctMkdir /Users/sebastianmeier/.npm correctMkdir not in flight; initializing
+99 verbose afterAdd /Users/sebastianmeier/.npm/render-bundle-module/1.0.0/package/package.json written
+100 silly resolveWithNewModule render-bundle-module@1.0.0 checking installable status
+101 silly loadAllDepsIntoIdealTree Finishing
+102 silly loadIdealTree Finishing
+103 silly currentTree svift-render@1.0.0
+103 silly currentTree ├── render-bundle-module@1.0.0
+103 silly currentTree └── render-svg-module@1.0.0
+104 silly idealTree svift-render@1.0.0
+104 silly idealTree ├── render-bundle-module@1.0.0
+104 silly idealTree └── render-svg-module@1.0.0
+105 silly generateActionsToTake Starting
+106 silly install generateActionsToTake
+107 silly generateActionsToTake Finishing
+108 silly diffTrees action count 2
+109 silly diffTrees update render-bundle-module@1.0.0
+110 silly diffTrees update render-svg-module@1.0.0
+111 silly decomposeActions action count 18
+112 silly decomposeActions remove render-bundle-module@1.0.0
+113 silly decomposeActions fetch render-bundle-module@1.0.0
+114 silly decomposeActions extract render-bundle-module@1.0.0
+115 silly decomposeActions test render-bundle-module@1.0.0
+116 silly decomposeActions preinstall render-bundle-module@1.0.0
+117 silly decomposeActions build render-bundle-module@1.0.0
+118 silly decomposeActions install render-bundle-module@1.0.0
+119 silly decomposeActions postinstall render-bundle-module@1.0.0
+120 silly decomposeActions finalize render-bundle-module@1.0.0
+121 silly decomposeActions remove render-svg-module@1.0.0
+122 silly decomposeActions fetch render-svg-module@1.0.0
+123 silly decomposeActions extract render-svg-module@1.0.0
+124 silly decomposeActions test render-svg-module@1.0.0
+125 silly decomposeActions preinstall render-svg-module@1.0.0
+126 silly decomposeActions build render-svg-module@1.0.0
+127 silly decomposeActions install render-svg-module@1.0.0
+128 silly decomposeActions postinstall render-svg-module@1.0.0
+129 silly decomposeActions finalize render-svg-module@1.0.0
+130 silly runTopLevelLifecycles Starting
+131 silly install runPreinstallTopLevelLifecycles
+132 silly preinstall svift-render@1.0.0 /Users/sebastianmeier/Sites/SVIFT_render-module@bitbucket/svift-render-a38079d7
+133 info lifecycle svift-render@1.0.0~preinstall: svift-render@1.0.0
+134 verbose lifecycle svift-render@1.0.0~preinstall: unsafe-perm in lifecycle true
+135 verbose lifecycle svift-render@1.0.0~preinstall: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/sebastianmeier/Sites/SVIFT_render-module@bitbucket/node_modules/.bin:/Users/sebastianmeier/anaconda/bin:/Applications/SenchaSDKTools-2.0.0-beta3/bin/Sencha/Cmd/3.0.0.250:/Library/Frameworks/GDAL.framework/Programs:/Applications/phantomjs/bin:/Applications/SenchaSDKTools-2.0.0-beta3:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/usr/texbin:/Users/sebastianmeier/Sites/adt-bundle-mac/sdk/platform-tools:/Users/sebastianmeier/Sites/adt-bundle-mac/sdk/tools
+136 verbose lifecycle svift-render@1.0.0~preinstall: CWD: /Users/sebastianmeier/Sites/SVIFT_render-module@bitbucket
+137 silly lifecycle svift-render@1.0.0~preinstall: Args: [ '-c', 'bash setup-ssh.sh' ]
+138 info lifecycle svift-render@1.0.0~preinstall: Failed to exec preinstall script
+139 silly rollbackFailedOptional Starting
+140 silly rollbackFailedOptional Finishing
+141 silly runTopLevelLifecycles Finishing
+142 silly install printInstalled
+143 verbose stack Error: svift-render@1.0.0 preinstall: `bash setup-ssh.sh`
+143 verbose stack spawn ENOENT
+143 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:33:16)
+143 verbose stack     at emitTwo (events.js:106:13)
+143 verbose stack     at ChildProcess.emit (events.js:191:7)
+143 verbose stack     at maybeClose (internal/child_process.js:877:16)
+143 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+144 verbose pkgid svift-render@1.0.0
+145 verbose cwd /Users/sebastianmeier/Sites/SVIFT_render-module@bitbucket
+146 error Darwin 16.6.0
+147 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install"
+148 error node v6.9.2
+149 error npm  v3.10.9
+150 error file sh
+151 error code ELIFECYCLE
+152 error errno ENOENT
+153 error syscall spawn
+154 error svift-render@1.0.0 preinstall: `bash setup-ssh.sh`
+154 error spawn ENOENT
+155 error Failed at the svift-render@1.0.0 preinstall script 'bash setup-ssh.sh'.
+155 error Make sure you have the latest version of node.js and npm installed.
+155 error If you do, this is most likely a problem with the svift-render package,
+155 error not with npm itself.
+155 error Tell the author that this fails on your system:
+155 error     bash setup-ssh.sh
+155 error You can get information on how to open an issue for this project with:
+155 error     npm bugs svift-render
+155 error Or if that isn't available, you can get their info via:
+155 error     npm owner ls svift-render
+155 error There is likely additional logging output above.
+156 verbose exit [ 1, true ]

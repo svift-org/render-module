@@ -1,5 +1,5 @@
 {
-  "name": "render-module",
+  "name": "svift-render",
   "version": "1.0.0",
   "description": "Main render module for producing png,jpg,gif,mpeg,svg,pdf sub-modules are used for each format and for the d3-render connection.",
   "main": "index.js",
@@ -17,6 +17,14 @@
     "image",
     "video"
   ],
+  "scripts": {
+    "preinstall": "bash setup-ssh.sh",
+    "postinstall": "bash cleanup-ssh.sh"
+  },
+  "dependencies":{
+    "svift-render-bundle": "git+ssh://git@bitbucket.org:svift/render-bundle-module.git",
+    "svift-render-svg": "git+ssh://git@bitbucket.org:svift/render-svg-module.git"
+  },
   "author": "Sebastian Meier",
   "license": "MIT",
   "homepage": "https://bitbucket.org/svift/render-module#readme"
