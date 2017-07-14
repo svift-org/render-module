@@ -1,6 +1,6 @@
 {
   "name": "svift-render",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Main render module for producing png,jpg,gif,mpeg,svg,pdf sub-modules are used for each format and for the d3-render connection.",
   "main": "index.js",
   "scripts": {
