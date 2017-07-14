@@ -1,0 +1,23 @@
+{
+  "name": "render-module",
+  "version": "1.0.0",
+  "description": "Main render module for producing png,jpg,gif,mpeg,svg,pdf sub-modules are used for each format and for the d3-render connection.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/svift/render-module.git"
+  },
+  "keywords": [
+    "render",
+    "d3",
+    "phantom",
+    "image",
+    "video"
+  ],
+  "author": "Sebastian Meier",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/svift/render-module#readme"
+}
