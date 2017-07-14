@@ -7,7 +7,7 @@
 'use strict';
 
 var renderer = {},
-  renderer.SVG = require('svift-render-svg'),
+  renderer["SVG"] = require('svift-render-svg'),
   renderBundle = require('svift-render-bundle');
 
 var render = (function () {
