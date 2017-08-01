@@ -7,16 +7,20 @@
 'use strict';
 
 var renderer = {},
-  renderBundle = require('svift-render-bundle');
-  renderer["SVG"] = require('svift-render-svg');
+  renderBundle = require('svift-render-bundle')
+
+  renderer.SVG = require('svift-render-svg')
 
 var render = (function () {
  
   var module = {},
     rendererCount = 0,
-    rendererCCount = 0;
+    rendererCCount = 0
 
-  for(var key in renderer){ rendererCount++; }
+  for(var key in renderer){
+    renderer[key].init()
+    rendererCount++
+  }
  
   /**
   * Initiate the rendering process by sending a data object containing params, vis and data (see data/example.json for structure)
@@ -29,7 +33,13 @@ var render = (function () {
     for(var key in renderer){
       renderer[key].render(data, module.renderCallback)
     }
-  };
+  }
+
+  module.init = function () {
+    for(var key in renderer){
+      renderer[key].init()
+    }
+  }
 
   module.renderCallback = function () {
     rendererCCount++;
@@ -37,11 +47,11 @@ var render = (function () {
       console.log('render complete');
       renderBundle.bundle(module.bundleCallback);
     }
-  };
+  }
 
   module.bundleCallback = function () {
     console.log('everything done');
-  };
+  }
  
   return module;
  
