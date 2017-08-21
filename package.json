@@ -17,9 +17,9 @@
     "image",
     "video"
   ],
-  "dependencies":{
-    "svift-render-bundle": "git+ssh://git@bitbucket.org:svift/render-bundle-module.git",
-    "svift-render-svg": "git+ssh://git@bitbucket.org:svift/render-svg-module.git"
+  "dependencies": {
+    "svift-render-bundle": "git+ssh://git@bitbucket.org/svift/render-bundle-module.git",
+    "svift-render-nightmare": "git+ssh://git@bitbucket.org/svift/render-nightmare-module.git"
   },
   "author": "Sebastian Meier",
   "license": "MIT",
