@@ -22,8 +22,7 @@ var render = (function () {
     path = '/output/',
     init_callback,
     render_data,
-    rootDir,
-    time
+    rootDir
 
   /**
   * Initiate the rendering process by sending a data object containing params, vis and data (see data/example.json for structure)
@@ -52,7 +51,6 @@ var render = (function () {
   }
 
   module.render = function (data, callback) {
-    time = Date.now()
     console.log('render')
     render_callback = callback
     render_data = data
@@ -78,33 +76,28 @@ var render = (function () {
   }
 
   module.render_part2 = function(){
-    console.log('part2', Date.now()-time)
     //Implement Feedback, so each finished element can already be accessed by the user
     //6. Bundle Sequence ZIPs
-    renderBundle.bundle(rootDir + path+render_data.id+'/svg', false, function(){
-      renderBundle.bundle(rootDir + path+render_data.id+'/png', false, function(){
+    renderBundle.bundle(rootDir + path + render_data.id+'/svg', false, function(){
+      renderBundle.bundle(rootDir + path + render_data.id+'/png', false, function(){
         module.render_part3()      
       })
     })
   }
 
   module.render_part3 = function(){
-    console.log('part3', Date.now()-time)
     //4. GIF
-    rGif.render(rootDir + path+render_data.id, 500, 500, module.render_part4) //render_data.params.width, render_data.params.height
+    rGif.render(rootDir + path + render_data.id, 500, 500, module.render_part4) //render_data.params.width, render_data.params.height
   }
 
   module.render_part4 = function(){
-    console.log('part4', Date.now()-time)
     //5. Video
     rVideo.render( rootDir + path + render_data.id, 500, 500, module.render_part5)
   }
 
   module.render_part5 = function(){
-    console.log('part5', Date.now()-time)
     //6. Bundle Complete ZIPs
     renderBundle.bundle(rootDir + path+render_data.id, true, function(){
-      console.log('part6', Date.now()-time)
       utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
       utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
       render_callback()
