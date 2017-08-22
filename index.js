@@ -59,7 +59,6 @@ var render = (function () {
     //rHtml 
 
     //3. Nightmare
-    console.log(data);
     rNightmare.render(data.params, data.id, path+data.id);
   }
 
