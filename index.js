@@ -62,10 +62,10 @@ var render = (function () {
     if (fs.existsSync(path+data.id)) {
       utils.deleteFolderRecursive(path+data.id)
     }
-    fs.mkdirSync(path+data.id);
-    fs.mkdirSync(path+data.id + '/html');
-    fs.mkdirSync(path+data.id + '/svg');
-    fs.mkdirSync(path+data.id + '/png');
+    fs.mkdirSync('.' + path+data.id);
+    fs.mkdirSync('.' + path+data.id + '/html');
+    fs.mkdirSync('.' + path+data.id + '/svg');
+    fs.mkdirSync('.' + path+data.id + '/png');
 
     //2. HTML
     rHtml.render(data.params, path+data.id)
