@@ -29,7 +29,7 @@ var render = (function () {
   */
 
   module.init = function (callback) {
-    initCallback = callback
+    init_callback = callback
 
     //init nightmare
     rNightmare.init(module.renderCallback)
