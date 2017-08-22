@@ -21,7 +21,8 @@ var render = (function () {
     render_callback,
     path = '/output/',
     init_callback,
-    render_data
+    render_data,
+    rootDir
 
   /**
   * Initiate the rendering process by sending a data object containing params, vis and data (see data/example.json for structure)
@@ -30,7 +31,8 @@ var render = (function () {
   * @api public
   */
 
-  module.init = function (callback) {
+  module.init = function (dir, callback) {
+    rootDir = dir
     init_callback = callback
 
     //init HTML
@@ -90,7 +92,7 @@ var render = (function () {
 
   module.render_part4 = function(){
     //5. Video
-    rVideo.render( global.rootDir + path + render_data.id, 500, 500, module.render_part5)
+    rVideo.render( rootDir + path + render_data.id, 500, 500, module.render_part5)
   }
 
   module.render_part5 = function(){
