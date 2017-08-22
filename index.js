@@ -90,7 +90,7 @@ var render = (function () {
 
   module.render_part4 = function(){
     //5. Video
-    rVideo.render( __dirname + path + render_data.id, 500, 500, module.render_part5)
+    rVideo.render( global.rootDir + path + render_data.id, 500, 500, module.render_part5)
   }
 
   module.render_part5 = function(){
