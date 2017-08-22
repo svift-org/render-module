@@ -62,10 +62,10 @@ var render = (function () {
     if (fs.existsSync(path+data.id)) {
       utils.deleteFolderRecursive(path+data.id)
     }
-    fs.mkdirSync('.' + path+data.id);
-    fs.mkdirSync('.' + path+data.id + '/html');
-    fs.mkdirSync('.' + path+data.id + '/svg');
-    fs.mkdirSync('.' + path+data.id + '/png');
+    fs.mkdirSync(rootDir + path+data.id);
+    fs.mkdirSync(rootDir + path+data.id + '/html');
+    fs.mkdirSync(rootDir + path+data.id + '/svg');
+    fs.mkdirSync(rootDir + path+data.id + '/png');
 
     //2. HTML
     rHtml.render(data.params, path+data.id)
@@ -78,8 +78,8 @@ var render = (function () {
   module.render_part2 = function(){
     //Implement Feedback, so each finished element can already be accessed by the user
     //6. Bundle Sequence ZIPs
-    renderBundle.bundle(path+render_data.id+'/svg', true, function(){
-      renderBundle.bundle(path+render_data.id+'/png', true, function(){
+    renderBundle.bundle(rootDir + path+render_data.id+'/svg', true, function(){
+      renderBundle.bundle(rootDir + path+render_data.id+'/png', true, function(){
         module.render_part3()      
       })
     })
@@ -87,7 +87,7 @@ var render = (function () {
 
   module.render_part3 = function(){
     //4. GIF
-    rGif.render(path+render_data.id, 500, 500, module.render_part4) //render_data.params.width, render_data.params.height
+    rGif.render(rootDir + path+render_data.id, 500, 500, module.render_part4) //render_data.params.width, render_data.params.height
   }
 
   module.render_part4 = function(){
@@ -97,7 +97,7 @@ var render = (function () {
 
   module.render_part5 = function(){
     //6. Bundle Complete ZIPs
-    renderBundle.bundle(path+render_data.id, false, function(){
+    renderBundle.bundle(rootDir + path+render_data.id, false, function(){
       render_callback()
     })
   }
