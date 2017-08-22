@@ -19,7 +19,7 @@ var render = (function () {
  
   var module = {},
     render_callback,
-    path = './output/',
+    path = '/output/',
     init_callback,
     render_data
 
@@ -49,6 +49,7 @@ var render = (function () {
   }
 
   module.render = function (data, callback) {
+    console.log('render')
     render_callback = callback
     render_data = data
 
@@ -89,7 +90,7 @@ var render = (function () {
 
   module.render_part4 = function(){
     //5. Video
-    rVideo.render(path+render_data.id, 500, 500, module.render_part5)
+    rVideo.render( __dirname + path + render_data.id, 500, 500, module.render_part5)
   }
 
   module.render_part5 = function(){
