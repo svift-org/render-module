@@ -57,7 +57,7 @@ var render = (function () {
     //rHtml 
 
     //3. Nightmare
-    rNightmare.render(data, data.id, path+data.id);
+    rNightmare.render(data.params, data.id, path+data.id);
   }
 
   module.render_part2 = function(){
