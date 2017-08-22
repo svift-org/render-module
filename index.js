@@ -9,7 +9,7 @@
 var fs = require('fs')
 
 var renderBundle = require('svift-render-bundle'),
-  rNightmare = require('svift-render-nightmare'),
+  rNightmare = require('svift-render-nightmare')
   //rHtml = require('svift-render-html'),
   //rGif = require('svift-render-gif'),
   //rVideo = require('svift-render-html')
