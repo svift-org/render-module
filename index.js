@@ -79,32 +79,34 @@ var render = (function () {
 
   module.render_part2 = function(){
     console.log('part2', Date.now()-time)
-    //4. GIF
-    rGif.render(rootDir + path+render_data.id, 500, 500, module.render_part3) //render_data.params.width, render_data.params.height
+    //Implement Feedback, so each finished element can already be accessed by the user
+    //6. Bundle Sequence ZIPs
+    renderBundle.bundle(rootDir + path+render_data.id+'/svg', false, function(){
+      renderBundle.bundle(rootDir + path+render_data.id+'/png', false, function(){
+        module.render_part3()      
+      })
+    })
   }
 
   module.render_part3 = function(){
     console.log('part3', Date.now()-time)
-    //5. Video
-    rVideo.render( rootDir + path + render_data.id, 500, 500, module.render_part4)
+    //4. GIF
+    rGif.render(rootDir + path+render_data.id, 500, 500, module.render_part4) //render_data.params.width, render_data.params.height
   }
 
   module.render_part4 = function(){
     console.log('part4', Date.now()-time)
-    //Implement Feedback, so each finished element can already be accessed by the user
-    //6. Bundle Sequence ZIPs
-    renderBundle.bundle(rootDir + path+render_data.id+'/svg', true, function(){
-      renderBundle.bundle(rootDir + path+render_data.id+'/png', true, function(){
-        module.render_part5()      
-      })
-    })
+    //5. Video
+    rVideo.render( rootDir + path + render_data.id, 500, 500, module.render_part5)
   }
 
   module.render_part5 = function(){
     console.log('part5', Date.now()-time)
     //6. Bundle Complete ZIPs
-    renderBundle.bundle(rootDir + path+render_data.id, false, function(){
+    renderBundle.bundle(rootDir + path+render_data.id, true, function(){
       console.log('part6', Date.now()-time)
+      utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
+      utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
       render_callback()
     })
   }
