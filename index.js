@@ -36,7 +36,7 @@ var render = (function () {
     init_callback = callback
 
     //init HTML
-    rHtml.init()
+    rHtml.init(rootDir)
 
     //init nightmare
     rNightmare.init(module.renderCallback)
