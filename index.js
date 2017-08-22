@@ -9,17 +9,19 @@
 var fs = require('fs')
 
 var renderBundle = require('svift-render-bundle'),
-  rNightmare = require('svift-render-nightmare')
-  //rHtml = require('svift-render-html'),
-  //rGif = require('svift-render-gif'),
-  //rVideo = require('svift-render-html')
+  rNightmare = require('svift-render-nightmare'),
+  rHtml = require('svift-render-html'),
+  utils = require('svift-utils'),
+  rGif = require('svift-render-gif'),
+  rVideo = require('svift-render-video')
 
 var render = (function () {
  
   var module = {},
     render_callback,
     path = './output/',
-    init_callback
+    init_callback,
+    render_data
 
   /**
   * Initiate the rendering process by sending a data object containing params, vis and data (see data/example.json for structure)
@@ -30,6 +32,9 @@ var render = (function () {
 
   module.init = function (callback) {
     init_callback = callback
+
+    //init HTML
+    rHtml.init()
 
     //init nightmare
     rNightmare.init(module.renderCallback)
@@ -45,45 +50,53 @@ var render = (function () {
 
   module.render = function (data, callback) {
     render_callback = callback
+    render_data = data
+
+    //TODO: Make rendering phases optional via config or something
 
     //1. Make Folder (Delete if exists)
     //TODO: Path from config
     if (fs.existsSync(path+data.id)) {
-      deleteFolderRecursive(path+data.id)
+      utils.deleteFolderRecursive(path+data.id)
     }
     fs.mkdirSync(path+data.id);
+    fs.mkdirSync(path+data.id + '/html');
     fs.mkdirSync(path+data.id + '/svg');
     fs.mkdirSync(path+data.id + '/png');
 
     //2. HTML
-    //rHtml 
+    rHtml.render(data.params, path+data.id)
 
     //3. Nightmare
+    //TODO: //3.2 > Final frame (SVG/PNG > JPEG Social Media Sizes)
     rNightmare.render(data.params, data.id, path+data.id);
   }
 
   module.render_part2 = function(){
-    //3.1 > Ani sequence (SVG/PNG) > Folders
-    //3.2 > Final frame (SVG/PNG > JPEG Social Media Sizes)
-    //4. GIF
-    //5. Video
-    //6. Bundle Sequence ZIPs, Complete ZIPs
-
-    render_callback()
+    //Implement Feedback, so each finished element can already be accessed by the user
+    //6. Bundle Sequence ZIPs
+    renderBundle.bundle(path+render_data.id+'/svg', true, function(){
+      renderBundle.bundle(path+render_data.id+'/png', true, function(){
+        module.render_part3()      
+      })
+    })
   }
 
-  function deleteFolderRecursive(path) {
-    if( fs.existsSync(path) ) {
-      fs.readdirSync(path).forEach(function(file,index){
-        var curPath = path + "/" + file;
-        if(fs.lstatSync(curPath).isDirectory()) { // recurse
-          deleteFolderRecursive(curPath);
-        } else { // delete file
-          fs.unlinkSync(curPath);
-        }
-      });
-      fs.rmdirSync(path);
-    }
+  module.render_part3 = function(){
+    //4. GIF
+    rGif.render(path+render_data.id, 500, 500, module.render_part4) //render_data.params.width, render_data.params.height
+  }
+
+  module.render_part4 = function(){
+    //5. Video
+    rVideo.render(path+render_data.id, 500, 500, module.render_part5)
+  }
+
+  module.render_part5 = function(){
+    //6. Bundle Complete ZIPs
+    renderBundle.bundle(path+render_data.id, false, function(){
+      render_callback()
+    })
   }
 
   return module;
