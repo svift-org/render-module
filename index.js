@@ -52,11 +52,14 @@ var render = (function () {
       deleteFolderRecursive(path+data.id)
     }
     fs.mkdirSync(path+data.id);
+    fs.mkdirSync(path+data.id + '/svg');
+    fs.mkdirSync(path+data.id + '/png');
 
     //2. HTML
     //rHtml 
 
     //3. Nightmare
+    console.log(data);
     rNightmare.render(data.params, data.id, path+data.id);
   }
 
