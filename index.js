@@ -97,9 +97,9 @@ var render = (function () {
 
   module.render_part5 = function(){
     //6. Bundle Complete ZIPs
+    utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
+    utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
     renderBundle.bundle(rootDir + path+render_data.id, true, function(){
-      utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
-      utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
       render_callback()
     })
   }
