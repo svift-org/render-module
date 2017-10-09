@@ -19,6 +19,7 @@ var render = (function () {
  
   var module = {},
     render_callback,
+    update_callback,
     path = '/output/',
     init_callback,
     render_data,
@@ -31,15 +32,16 @@ var render = (function () {
   * @api public
   */
 
-  module.init = function (dir, callback) {
+  module.init = function (dir, callback, _update_callback) {
     rootDir = dir
     init_callback = callback
+    update_callback = _update_callback
 
     //init HTML
     rHtml.init(rootDir)
 
     //init nightmare
-    rNightmare.init(module.renderCallback)
+    rNightmare.init(module.renderCallback, update_callback)
   }
 
   module.renderCallback = function(msg){
@@ -69,17 +71,20 @@ var render = (function () {
 
     //2. HTML
     rHtml.render(data.params, path+data.id)
+    update_callback('html',1)
 
     //3. Nightmare
     //TODO: //3.2 > Final frame (SVG/PNG > JPEG Social Media Sizes)
-    rNightmare.render(data.params, data.id, path+data.id);
+    rNightmare.render(data.params, data.id, path+data.id, update_callback);
   }
 
   module.render_part2 = function(){
     //Implement Feedback, so each finished element can already be accessed by the user
     //6. Bundle Sequence ZIPs
     renderBundle.bundle(rootDir + path + render_data.id+'/svg', false, function(){
+      update_callback('svg',1)
       renderBundle.bundle(rootDir + path + render_data.id+'/png', false, function(){
+        update_callback('png',1)
         module.render_part3()      
       })
     })
@@ -88,11 +93,13 @@ var render = (function () {
   module.render_part3 = function(){
     //4. GIF
     rGif.render(rootDir + path + render_data.id, 500, 500, module.render_part4) //render_data.params.width, render_data.params.height
+    update_callback('gif',1)
   }
 
   module.render_part4 = function(){
     //5. Video
     rVideo.render( rootDir + path + render_data.id, 500, 500, module.render_part5)
+    update_callback('mpeg',1)
   }
 
   module.render_part5 = function(){
@@ -100,6 +107,7 @@ var render = (function () {
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
     renderBundle.bundle(rootDir + path+render_data.id, true, function(){
+      update_callback('zip',1)
       render_callback()
     })
   }
