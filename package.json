@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/svift/render-module.git"
+    "url": "git+https://git@github.com/svift-org/render-module.git"
   },
   "keywords": [
     "render",
@@ -18,14 +18,14 @@
     "video"
   ],
   "dependencies": {
-    "svift-render-bundle": "git+ssh://git@bitbucket.org/svift/render-bundle-module.git",
-    "svift-render-html": "git+ssh://git@bitbucket.org/svift/render-html-module.git",
-    "svift-render-gif": "git+ssh://git@bitbucket.org/svift/render-gif-module.git",
-    "svift-render-video": "git+ssh://git@bitbucket.org/svift/render-video-module.git",
-    "svift-render-nightmare": "git+ssh://git@bitbucket.org/svift/render-nightmare-module.git",
-    "svift-utils": "git+ssh://git@bitbucket.org/svift/utils.git"
+    "svift-render-bundle": "git+https://git@github.com/svift-org/render-bundle-module.git",
+    "svift-render-html": "git+https://git@github.com/svift-org/render-html-module.git",
+    "svift-render-gif": "git+https://git@github.com/svift-org/render-gif-module.git",
+    "svift-render-video": "git+https://git@github.com/svift-org/render-video-module.git",
+    "svift-render-nightmare": "git+https://git@github.com/svift-org/render-nightmare-module.git",
+    "svift-utils": "git+https://git@github.com/svift-org/utils.git"
   },
   "author": "Sebastian Meier",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/svift/render-module#readme"
+  "homepage": "https://github.com/svift-org/render-module#readme"
 }
