@@ -13,7 +13,10 @@ var renderBundle = require('svift-render-bundle'),
   rHtml = require('svift-render-html'),
   utils = require('svift-utils'),
   rGif = require('svift-render-gif'),
-  rVideo = require('svift-render-video')
+  rVideo = require('svift-render-video'),
+  aws = require('aws-sdk')
+
+  aws.config.region = 'eu-central-1'
 
 var render = (function () {
  
@@ -23,7 +26,8 @@ var render = (function () {
     path = '/output/',
     init_callback,
     render_data,
-    rootDir
+    rootDir,
+    s3
 
   /**
   * Initiate the rendering process by sending a data object containing params, vis and data (see data/example.json for structure)
@@ -36,6 +40,8 @@ var render = (function () {
     rootDir = dir
     init_callback = callback
     update_callback = _update_callback
+
+    s3 = new aws.S3()
 
     //init HTML
     rHtml.init(rootDir)
@@ -110,8 +116,29 @@ var render = (function () {
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
     renderBundle.bundle(rootDir + path+render_data.id, true, function(){
-      update_callback('zip',1)
-      render_callback()
+
+      module.awsUpload(rootDir + path+render_data.id+'/'+render_data.id+'.gif', function(){
+        update_callback('zip',1)
+        render_callback()
+      })
+    })
+  }
+
+  module.awsUpload = function(file, callback){
+    fs.readFile(file, function (err, data) {
+        if (err) { throw err }
+
+        // Buffer Pattern; how to handle buffers; straw, intake/outtake analogy
+        var base64data = new Buffer(data, 'binary');
+
+        s3.putObject({
+           'Bucket': 'svift-vis-output',
+            'Key': 'output/'+render_data.id+'/'+file,
+            'Body': base64data,
+            'ACL': 'public-read'
+         }, function (resp) {
+            callback()
+        })
     })
   }
 
