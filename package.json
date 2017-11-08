@@ -18,6 +18,7 @@
     "video"
   ],
   "dependencies": {
+    "aws-sdk": "2.x",
     "svift-render-bundle": "git+https://git@github.com/svift-org/render-bundle-module.git",
     "svift-render-html": "git+https://git@github.com/svift-org/render-html-module.git",
     "svift-render-gif": "git+https://git@github.com/svift-org/render-gif-module.git",

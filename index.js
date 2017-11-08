@@ -53,7 +53,7 @@ var render = (function () {
   }
 
   module.render = function (data, callback) {
-    console.log('render')
+    console.log('render',data.id)
     render_callback = callback
     render_data = data
 
