@@ -64,6 +64,9 @@ var render = (function () {
     if (fs.existsSync(path+data.id)) {
       utils.deleteFolderRecursive(path+data.id)
     }
+
+    console.log(rootDir + path+data.id)
+
     fs.mkdirSync(rootDir + path+data.id);
     fs.mkdirSync(rootDir + path+data.id + '/html');
     fs.mkdirSync(rootDir + path+data.id + '/svg');
