@@ -124,9 +124,9 @@ var render = (function () {
       let scan_path = rootDir + path + render_data.id;
 
       (['','/html']).forEach((p) => {
-        fs.readdirSync(scan_path+p).forEach(file => {
+        fs.readdirSync(scan_path + p).forEach(file => {
           if((['','.','html']).indexOf(file) == -1){
-            render_data.transfer.push(scan_path+p+'/'+file)
+            render_data.transfer.push(scan_path + p + '/' + file)
           }
         })
       })
@@ -141,6 +141,7 @@ var render = (function () {
     }else{
       //delete everything
       utils.deleteFolderRecursive(rootDir + path + render_data.id)
+
       update_callback('zip',1)
       render_callback()
     }
@@ -153,12 +154,17 @@ var render = (function () {
         // Buffer Pattern; how to handle buffers; straw, intake/outtake analogy
         var base64data = new Buffer(data, 'binary');
 
+        console.log(file.substr(file.indexOf('output')))
+
         s3.putObject({
            'Bucket': 'svift-vis-output',
             'Key': file.substr(file.indexOf('output')),
             'Body': base64data,
             'ACL': 'public-read'
          }, function (resp) {
+            
+            console.log(resp)
+
             transfer_count++
             module.nextAwsUpload()
         })
