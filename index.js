@@ -140,6 +140,8 @@ var render = (function () {
     if(transfer_count<render_data.transfer){
       module.awsUpload()
     }else{
+      //delete everything
+      utils.deleteFolderRecursive(rootDir + path + render_data.id)
       update_callback('zip',1)
       render_callback()
     }
