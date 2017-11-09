@@ -72,8 +72,6 @@ var render = (function () {
       utils.deleteFolderRecursive(path+data.id)
     }
 
-    console.log(rootDir + path+data.id)
-
     fs.mkdirSync(rootDir + path+data.id);
     fs.mkdirSync(rootDir + path+data.id + '/html');
     fs.mkdirSync(rootDir + path+data.id + '/svg');
@@ -123,7 +121,8 @@ var render = (function () {
 
       //add social media
 
-      var scan_path = rootDir + path+render_data.id
+      let scan_path = rootDir + path + render_data.id;
+
       (['','/html']).forEach((p) => {
         fs.readdirSync(scan_path+p).forEach(file => {
           if((['','.','html']).indexOf(file) == -1){
