@@ -131,14 +131,12 @@ var render = (function () {
         })
       })
 
-      console.log(render_data.transfer)
-
       module.nextAwsUpload()
     })
   }
 
   module.nextAwsUpload = function(){
-    if(transfer_count<render_data.transfer){
+    if(transfer_count<render_data.transfer.length){
       module.awsUpload()
     }else{
       //delete everything
@@ -156,8 +154,6 @@ var render = (function () {
         // Buffer Pattern; how to handle buffers; straw, intake/outtake analogy
         var base64data = new Buffer(data, 'binary');
 
-        console.log(file.substr(file.indexOf('output')))
-
         s3.putObject({
            'Bucket': 'svift-vis-output',
             'Key': file.substr(file.indexOf('output')),
@@ -165,8 +161,6 @@ var render = (function () {
             'ACL': 'public-read'
          }, function (resp) {
             
-            console.log(resp)
-
             transfer_count++
             module.nextAwsUpload()
         })
