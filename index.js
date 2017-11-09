@@ -155,11 +155,44 @@ var render = (function () {
         // Buffer Pattern; how to handle buffers; straw, intake/outtake analogy
         var base64data = new Buffer(data, 'binary');
 
+        let type = 'application/octet-stream',
+          ext = file.split('.')
+
+        switch(ext[ext.length-1]){
+          case 'txt':
+            type = 'plain/text'
+          break;
+          case 'html':
+            type = 'application/xhtml+xml'
+          break;
+          case 'xml':
+            type = 'application/xml'
+          break;
+          case 'png':
+            type = 'image/png'
+          break;
+          case 'zip':
+            type = 'application/zip'
+          break;
+          case 'ico':
+            type = 'image/x-icon'
+          break;
+          case 'gif':
+            type = 'image/gif'
+          break;
+          case 'mp4':
+            type = 'video/mp4'
+          break;
+        }
+
         s3.putObject({
            'Bucket': 'svift-vis-output',
             'Key': file.substr(file.indexOf('output')),
             'Body': base64data,
-            'ACL': 'public-read'
+            'ACL': 'public-read',
+            Metadata: {
+              'Content-Type': type
+            }
          }, function (resp) {
             
             transfer_count++
