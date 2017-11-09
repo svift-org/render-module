@@ -148,7 +148,8 @@ var render = (function () {
   }
 
   module.awsUpload = function(){
-    fs.readFile(render_data.transfer[transfer_count], function (err, data) {
+    let file = render_data.transfer[transfer_count]
+    fs.readFile(file, function (err, data) {
         if (err) { throw err }
 
         // Buffer Pattern; how to handle buffers; straw, intake/outtake analogy
