@@ -131,6 +131,8 @@ var render = (function () {
         })
       })
 
+      console.log(render_data.transfer)
+
       module.nextAwsUpload()
     })
   }
