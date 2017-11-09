@@ -22,6 +22,7 @@ var render = (function () {
  
   var module = {},
     render_callback,
+    transfer_count = 0,
     update_callback,
     path = '/output/',
     init_callback,
@@ -117,15 +118,35 @@ var render = (function () {
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
     renderBundle.bundle(rootDir + path+render_data.id, true, function(){
 
-      module.awsUpload(rootDir + path+render_data.id+'/'+render_data.id+'.gif', function(){
-        update_callback('zip',1)
-        render_callback()
+      render_data['transfer'] = []
+      transfer_count = 0
+
+      //add social media
+
+      var scan_path = rootDir + path+render_data.id
+      (['','/html']).forEach((p) => {
+        fs.readdirSync(scan_path+p).forEach(file => {
+          if((['','.','html']).indexOf(file) == -1){
+            render_data.transfer.push(scan_path+p+'/'+file)
+          }
+        })
       })
+
+      module.nextAwsUpload()
     })
   }
 
-  module.awsUpload = function(file, callback){
-    fs.readFile(file, function (err, data) {
+  module.nextAwsUpload = function(){
+    if(transfer_count<render_data.transfer){
+      module.awsUpload()
+    }else{
+      update_callback('zip',1)
+      render_callback()
+    }
+  }
+
+  module.awsUpload = function(){
+    fs.readFile(render_data.transfer[transfer_count], function (err, data) {
         if (err) { throw err }
 
         // Buffer Pattern; how to handle buffers; straw, intake/outtake analogy
@@ -133,11 +154,12 @@ var render = (function () {
 
         s3.putObject({
            'Bucket': 'svift-vis-output',
-            'Key': 'output/'+render_data.id+'/'+file,
+            'Key': file.substr(file.indexOf('output')),
             'Body': base64data,
             'ACL': 'public-read'
          }, function (resp) {
-            callback()
+            transfer_count++
+            module.nextAwsUpload()
         })
     })
   }
