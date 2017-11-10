@@ -187,7 +187,7 @@ var render = (function () {
 
         s3.putObject({
            'Bucket': 'svift-vis-output',
-            'Key': file.substr(file.indexOf('output')),
+            'Key': process.env.S3_FOLDER+file.substr(file.indexOf('output')+6),
             'Body': base64data,
             'ACL': 'public-read',
             Metadata: {
