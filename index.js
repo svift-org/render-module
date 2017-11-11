@@ -190,9 +190,7 @@ var render = (function () {
             'Key': process.env.S3_FOLDER+file.substr(file.indexOf('output')+6),
             'Body': base64data,
             'ACL': 'public-read',
-            Metadata: {
-              'Content-Type': type
-            }
+            'Content-Type': type
          }, function (resp) {
             
             transfer_count++
