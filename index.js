@@ -163,7 +163,7 @@ var render = (function () {
             type = 'plain/text'
           break;
           case 'html':
-            type = 'application/xhtml+xml'
+            type = 'text/html' //application/xhtml+xml
           break;
           case 'xml':
             type = 'application/xml'
