@@ -192,7 +192,9 @@ var render = (function () {
             'ACL': 'public-read',
             'ContentType': type
          }, function (resp) {
-            console.log(resp)
+            if(resp){
+              console.log(resp)
+            }
             
             transfer_count++
             module.nextAwsUpload()
