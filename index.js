@@ -190,8 +190,9 @@ var render = (function () {
             'Key': process.env.S3_FOLDER+file.substr(file.indexOf('output')+6),
             'Body': base64data,
             'ACL': 'public-read',
-            'Content-Type': type
+            'ContentType': type
          }, function (resp) {
+            console.log(resp)
             
             transfer_count++
             module.nextAwsUpload()
