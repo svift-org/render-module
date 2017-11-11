@@ -60,7 +60,7 @@ var render = (function () {
   }
 
   module.render = function (data, callback) {
-    console.log('render', data.id, data.params)
+    console.log('render', data.id, data.params.vis.type)
     render_callback = callback
     render_data = data
 
