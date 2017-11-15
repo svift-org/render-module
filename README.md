@@ -24,12 +24,12 @@ Image 500 x 750 (1280x1920)
 Video 500 x 500
 
 ## Snapchat
-Maximum ad length: 10 seconds (4-7 seconds is recommended)
-Maximum file size: 32 MB
-Dimensions: 1080 x 1920 (image must use the entire canvas)
-150px margin on top and bottom, 64px margin on each side
-Resolution: 9:16 aspect ratio
-File type: .mp4 or .mov file
+- Maximum ad length: 10 seconds (4-7 seconds is recommended)
+- Maximum file size: 32 MB
+- Dimensions: 1080 x 1920 (image must use the entire canvas)
+- 150px margin on top and bottom, 64px margin on each side
+- Resolution: 9:16 aspect ratio
+- File type: .mp4 or .mov file
 
 ## Pinterest
 Image 238 x ? (?) [222x150, 55x55] > 735 x 1102
