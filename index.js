@@ -78,8 +78,6 @@ var render = (function () {
     })
 
     module.nextAwsUpload()
-
-    update_callback('social', 1)
   }
 
   module.render = function (data, callback) {
@@ -164,6 +162,8 @@ var render = (function () {
 
         update_callback('zip',1)
         render_callback()
+      }else if(upload_state == 'social'){
+        update_callback('social', 1)
       }
     }
   }
