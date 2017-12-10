@@ -13,8 +13,10 @@ var renderBundle = require('svift-render-bundle'),
   rHtml = require('svift-render-html'),
   utils = require('svift-utils'),
   rGif = require('svift-render-gif'),
-  rVideo = require('svift-render-video'),
-  aws = require('aws-sdk')
+  //Removing video component temporarily
+  //rVideo = require('svift-render-video'),
+  aws = require('aws-sdk'),
+  config = require('./config.json')
 
   aws.config.region = 'eu-central-1'
 
@@ -48,7 +50,7 @@ var render = (function () {
     rHtml.init(rootDir)
 
     //init nightmare
-    rNightmare.init(module.renderCallback, update_callback)
+    rNightmare.init(module.renderCallback, update_callback, config)
   }
 
   module.renderCallback = function(msg){
@@ -73,6 +75,7 @@ var render = (function () {
     }
 
     fs.mkdirSync(rootDir + path+data.id);
+    fs.mkdirSync(rootDir + path+data.id + '/social');
     fs.mkdirSync(rootDir + path+data.id + '/html');
     fs.mkdirSync(rootDir + path+data.id + '/svg');
     fs.mkdirSync(rootDir + path+data.id + '/png');
@@ -100,15 +103,16 @@ var render = (function () {
 
   module.render_part3 = function(){
     //4. GIF
-    rGif.render(rootDir + path + render_data.id, 500, 500, module.render_part4) //render_data.params.width, render_data.params.height
+    rGif.render(rootDir + path + render_data.id, config.video.output.width, config.video.output.height, module.render_part5)
     update_callback('gif',1)
   }
 
-  module.render_part4 = function(){
+  //Removing video component temporarily
+  /*module.render_part4 = function(){
     //5. Video
     rVideo.render( rootDir + path + render_data.id, 500, 500, module.render_part5)
     update_callback('mpeg',1)
-  }
+  }*/
 
   module.render_part5 = function(){
     //6. Bundle Complete ZIPs

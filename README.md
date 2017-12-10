@@ -1,8 +1,12 @@
 # README
 
-Import private bitbucket repos as npm packages: http://fiznool.com/blog/2015/05/20/an-alternative-to-npm-private-modules/
-If this does not work simply add an access key to bitbucket (best create a fresh one and then use ssh-add to add the new private key and there you go)
-https://superuser.com/questions/357602/use-a-specified-key-from-ssh-agent
+## Video Component
+The video component has been temporarily removed.
+Last full implementation: #de4e83f
+
+
+Video: 1280 x 720 / 640 x 360
+
 
 Gif Max Size: 1MB (Tumblr), 3MB (Twitter)
 
