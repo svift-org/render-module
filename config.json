@@ -19,7 +19,7 @@
 				"width":540,
 				"height":540
 			},
-			"scaled":{
+			"scale":{
 				"width":1080,
 				"height":1080
 			},
@@ -37,7 +37,7 @@
 				"width":700,
 				"height":400
 			},
-			"scaled":{
+			"scale":{
 				"width":1400,
 				"height":800
 			},
@@ -55,7 +55,7 @@
 				"width":497,
 				"height":373
 			},
-			"scaled":{
+			"scale":{
 				"width":994,
 				"height":746
 			},
@@ -73,7 +73,7 @@
 				"width":640,
 				"height":960
 			},
-			"scaled":{
+			"scale":{
 				"width":1280,
 				"height":1920
 			},
@@ -91,7 +91,7 @@
 				"width":600,
 				"height":600
 			},
-			"scaled":{
+			"scale":{
 				"width":1200,
 				"height":1200
 			},
@@ -109,7 +109,7 @@
 				"width":512,
 				"height":256
 			},
-			"scaled":{
+			"scale":{
 				"width":1024,
 				"height":512
 			},
@@ -127,7 +127,7 @@
 				"width":476,
 				"height":810
 			},
-			"scaled":{
+			"scale":{
 				"width":952,
 				"height":1620
 			},
@@ -145,7 +145,7 @@
 				"width":600,
 				"height":315
 			},
-			"scaled":{
+			"scale":{
 				"width":1200,
 				"height":630
 			},
@@ -163,7 +163,7 @@
 				"width":1024,
 				"height":512
 			},
-			"scaled":{
+			"scale":{
 				"width":2048,
 				"height":1024
 			},
@@ -181,7 +181,7 @@
 				"width":800,
 				"height":1200
 			},
-			"scaled":{
+			"scale":{
 				"width":1600,
 				"height":2400
 			},
@@ -199,7 +199,7 @@
 				"width":512,
 				"height":512
 			},
-			"scaled":{
+			"scale":{
 				"width":1024,
 				"height":1024
 			},
