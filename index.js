@@ -127,9 +127,9 @@ var render = (function () {
 
       let scan_path = rootDir + path + render_data.id;
 
-      (['','/html']).forEach((p) => {
+      (['','/html','/social']).forEach((p) => {
         fs.readdirSync(scan_path + p).forEach(file => {
-          if((['','.','html']).indexOf(file) == -1){
+          if((['','.','html','social']).indexOf(file) == -1){
             render_data.transfer.push(scan_path + p + '/' + file)
           }
         })
