@@ -138,7 +138,7 @@ var render = (function () {
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
     renderBundle.bundle(rootDir + path+render_data.id, true, function(){
-      upload_state = 'all'
+      upload_state = 'all';
 
       (['','/html']).forEach((p) => {
         fs.readdirSync(scan_path + p).forEach(file => {
