@@ -64,10 +64,10 @@ var render = (function () {
   }
 
   module.socialCallback = function(){
-    render_data['transfer'] = []
-    transfer_count = 0
-    scan_path = rootDir + path + render_data.id
-    upload_state = 'social'
+    render_data['transfer'] = [];
+    transfer_count = 0;
+    scan_path = rootDir + path + render_data.id;
+    upload_state = 'social';
 
     (['/social']).forEach((p) => {
       fs.readdirSync(scan_path + p).forEach(file => {
