@@ -153,6 +153,7 @@ var render = (function () {
 
   module.awsUpload = function(){
     let file = render_data.transfer[transfer_count]
+    console.log('aws',file)
     fs.readFile(file, function (err, data) {
         if (err) { throw err }
 
