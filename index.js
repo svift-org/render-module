@@ -30,7 +30,9 @@ var render = (function () {
     init_callback,
     render_data,
     rootDir,
-    s3
+    s3,
+    scan_path,
+    upload_state
 
   /**
   * Initiate the rendering process by sending a data object containing params, vis and data (see data/example.json for structure)
@@ -50,7 +52,7 @@ var render = (function () {
     rHtml.init(rootDir)
 
     //init nightmare
-    rNightmare.init(module.renderCallback, update_callback, config)
+    rNightmare.init(module.renderCallback, update_callback, module.socialCallback, config)
   }
 
   module.renderCallback = function(msg){
@@ -59,6 +61,25 @@ var render = (function () {
     }else if(msg == 'renderDone'){
       module.render_part2()
     }
+  }
+
+  module.socialCallback = function(){
+    render_data['transfer'] = []
+    transfer_count = 0
+    scan_path = rootDir + path + render_data.id
+    upload_state = 'social'
+
+    (['/social']).forEach((p) => {
+      fs.readdirSync(scan_path + p).forEach(file => {
+        if((['','.']).indexOf(file) == -1){
+          render_data.transfer.push(scan_path + p + '/' + file)
+        }
+      })
+    })
+
+    module.nextAwsUpload()
+
+    update_callback('social', 1)
   }
 
   module.render = function (data, callback) {
@@ -119,15 +140,9 @@ var render = (function () {
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
     renderBundle.bundle(rootDir + path+render_data.id, true, function(){
+      upload_state = 'all'
 
-      render_data['transfer'] = []
-      transfer_count = 0
-
-      //add social media
-
-      let scan_path = rootDir + path + render_data.id;
-
-      (['','/html','/social']).forEach((p) => {
+      (['','/html']).forEach((p) => {
         fs.readdirSync(scan_path + p).forEach(file => {
           if((['','.','html','social']).indexOf(file) == -1){
             render_data.transfer.push(scan_path + p + '/' + file)
@@ -144,16 +159,17 @@ var render = (function () {
       module.awsUpload()
     }else{
       //delete everything
-      utils.deleteFolderRecursive(rootDir + path + render_data.id)
+      if(upload_state == 'all'){
+        utils.deleteFolderRecursive(rootDir + path + render_data.id)
 
-      update_callback('zip',1)
-      render_callback()
+        update_callback('zip',1)
+        render_callback()
+      }
     }
   }
 
   module.awsUpload = function(){
     let file = render_data.transfer[transfer_count]
-    console.log('aws',file)
     fs.readFile(file, function (err, data) {
         if (err) { throw err }
 
