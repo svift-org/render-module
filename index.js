@@ -115,7 +115,9 @@ var render = (function () {
       update_callback('svg',1)
       renderBundle.bundle(rootDir + path + render_data.id+'/png', false, function(){
         update_callback('png',1)
-        module.render_part3()      
+        renderBundle.bundle(rootDir + path + render_data.id+'/social', false, function(){
+          module.render_part3()      
+        })
       })
     })
   }
@@ -137,8 +139,34 @@ var render = (function () {
     //6. Bundle Complete ZIPs
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
-    renderBundle.bundle(rootDir + path+render_data.id, true, function(){
+    renderBundle.bundle(rootDir + path + render_data.id, true, function(){
       upload_state = 'all';
+
+      var contents = {
+        date:Date.now(),
+        social:[],
+        files:[
+          { class:'zip', icon:'zip', file:'gif', name:'GIF Animation'}
+        ],
+        zips:[
+          { class:'zip', icon:'zip', file:render_data.id, name:'All Visualisations'},
+          { class:'zip', icon:'zip', file:'social', name:'Social Media'},
+          { class:'zip', icon:'zip', file:'png', name:'PNG Sequence'},
+          { class:'zip', icon:'zip', file:'svg', name:'SVG Sequence'}
+        ],
+        html:true
+      }
+
+      config.sizes.forEach(s=>{
+        contents.social.push({
+          class:s.class,
+          icon:s.icon,
+          file:s.file,
+          name:s.name
+        })
+      })
+
+      fs.writeFileSync('content.json', JSON.stringify(contents), 'utf8')
 
       (['','/html']).forEach((p) => {
         fs.readdirSync(scan_path + p).forEach(file => {
