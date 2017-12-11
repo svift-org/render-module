@@ -19,11 +19,12 @@
   ],
   "dependencies": {
     "aws-sdk": "2.x",
+    "fs": "0.0.1-security",
     "svift-render-bundle": "git+https://git@github.com/svift-org/render-bundle-module.git",
-    "svift-render-html": "git+https://git@github.com/svift-org/render-html-module.git",
     "svift-render-gif": "git+https://git@github.com/svift-org/render-gif-module.git",
-    "svift-render-video": "git+https://git@github.com/svift-org/render-video-module.git",
+    "svift-render-html": "git+https://git@github.com/svift-org/render-html-module.git",
     "svift-render-nightmare": "git+https://git@github.com/svift-org/render-nightmare-module.git",
+    "svift-render-video": "git+https://git@github.com/svift-org/render-video-module.git",
     "svift-utils": "git+https://git@github.com/svift-org/utils.git"
   },
   "author": "Sebastian Meier",
