@@ -166,7 +166,7 @@ var render = (function () {
         })
       })
 
-      fs.writeFileSync(rootDir + path + +render_data.id + '/contents.json', JSON.stringify(contents), 'utf8')
+      fs.writeFileSync(rootDir + path + render_data.id + '/contents.json', JSON.stringify(contents), 'utf8')
 
       (['','/html']).forEach((p) => {
         fs.readdirSync(scan_path + p).forEach(file => {
