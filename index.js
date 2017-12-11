@@ -166,18 +166,17 @@ var render = (function () {
         })
       })
 
-      console.log(rootDir + path + render_data.id + '/contents.json')
-      fs.writeFileSync(rootDir + path + render_data.id + '/contents.json', JSON.stringify(contents), 'utf8')
-
-      (['','/html']).forEach((p) => {
-        fs.readdirSync(scan_path + p).forEach(file => {
-          if((['','.','html','social']).indexOf(file) == -1){
-            render_data.transfer.push(scan_path + p + '/' + file)
-          }
+      fs.writeFile(rootDir + path + render_data.id + '/contents.json', JSON.stringify(contents), 'utf8', function(err){
+        (['','/html']).forEach((p) => {
+          fs.readdirSync(scan_path + p).forEach(file => {
+            if((['','.','html','social']).indexOf(file) == -1){
+              render_data.transfer.push(scan_path + p + '/' + file)
+            }
+          })
         })
-      })
 
-      module.nextAwsUpload()
+        module.nextAwsUpload()
+      })
     })
   }
 
