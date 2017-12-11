@@ -166,6 +166,7 @@ var render = (function () {
         })
       })
 
+      console.log(rootDir + path + render_data.id + '/contents.json')
       fs.writeFileSync(rootDir + path + render_data.id + '/contents.json', JSON.stringify(contents), 'utf8')
 
       (['','/html']).forEach((p) => {
