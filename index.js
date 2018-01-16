@@ -242,6 +242,8 @@ var render = (function () {
           update_callback('aws',1)
         }
 
+        console.log(file)
+
         s3.putObject({
            'Bucket': 'svift-vis-output',
             'Key': process.env.S3_FOLDER+file.substr(file.indexOf('output')+6),
