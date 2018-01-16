@@ -152,7 +152,7 @@ var render = (function () {
           { class:'zip', icon:'zip', file:render_data.id, name:'All Visualisations'},
           { class:'zip', icon:'zip', file:'social', name:'Social Media'},
           { class:'zip', icon:'zip', file:'png', name:'PNG Sequence'},
-          { class:'zip', icon:'zip', file:'svg', name:'SVG Sequence'}
+          { class:'zip', icon:'zip', file:'svg', name:'SVG'}
         ],
         html:true
       }
@@ -174,6 +174,9 @@ var render = (function () {
             }
           })
         })
+
+        //move png upload to the end
+        render_data.transfer.push(render_data.transfer.slice(render_data.transfer.indexOf(scan_path + '/png.zip'),1)[0])
 
         module.nextAwsUpload()
       })
@@ -232,6 +235,11 @@ var render = (function () {
           case 'mp4':
             type = 'video/mp4'
           break;
+        }
+
+        //This is the last file, let the frontend know we are almost done...
+        if(file.indexOf('png.zip')>-1){
+          update_callback('aws',1)
         }
 
         s3.putObject({
