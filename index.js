@@ -124,7 +124,10 @@ var render = (function () {
 
   module.render_part3 = function(){
     //4. GIF
+    console.log('gif start', render_data.id)
+    var start = new Date().getTime()
     rGif.render(rootDir + path + render_data.id, config.video.output.width, config.video.output.height, module.render_part5)
+    console.log('gif done', render_data.id, new Date().getTime() - start)
     update_callback('gif',1)
   }
 
@@ -201,6 +204,7 @@ var render = (function () {
 
   module.awsUpload = function(){
     let file = render_data.transfer[transfer_count]
+    console.log(file)
     fs.readFile(file, function (err, data) {
         if (err) { throw err }
 
@@ -241,8 +245,6 @@ var render = (function () {
         if(file.indexOf('png.zip')>-1){
           update_callback('aws',1)
         }
-
-        console.log(file)
 
         s3.putObject({
            'Bucket': 'svift-vis-output',
