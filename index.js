@@ -182,12 +182,16 @@ var render = (function () {
           })
         })
 
-        console.log(render_data.transfer)
-
-        //move png upload to the end
-        render_data.transfer.push(render_data.transfer.slice(render_data.transfer.indexOf(scan_path + '/png.zip'),1)[0])
-
-        console.log(render_data.transfer)
+        let index = false
+        render_data.transfer.forEach((t,i)=>{
+          if(t.indexOf('png.zip')>-1){
+            index = i
+          }
+        })
+        
+        if(index){
+          render_data.transfer.push(render_data.transfer.slice(index,1)[0])
+        }
 
         module.nextAwsUpload()
       })
