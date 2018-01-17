@@ -122,13 +122,14 @@ var render = (function () {
     })
   }
 
+  var start;
+
   module.render_part3 = function(){
     //4. GIF
     console.log('gif start', render_data.id)
-    var start = new Date().getTime()
+    start = new Date().getTime()
     rGif.render(rootDir + path + render_data.id, config.video.output.width, config.video.output.height, module.render_part5)
-    console.log('gif done', render_data.id, new Date().getTime() - start)
-    update_callback('gif',1)
+    
   }
 
   //Removing video component temporarily
@@ -139,6 +140,9 @@ var render = (function () {
   }*/
 
   module.render_part5 = function(){
+    console.log('gif done', render_data.id, new Date().getTime() - start)
+    update_callback('gif',1)
+
     //6. Bundle Complete ZIPs
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
