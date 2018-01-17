@@ -182,8 +182,12 @@ var render = (function () {
           })
         })
 
+        console.log(render_data.transfer)
+
         //move png upload to the end
         render_data.transfer.push(render_data.transfer.slice(render_data.transfer.indexOf(scan_path + '/png.zip'),1)[0])
+
+        console.log(render_data.transfer)
 
         module.nextAwsUpload()
       })
@@ -208,63 +212,67 @@ var render = (function () {
 
   module.awsUpload = function(){
     let file = render_data.transfer[transfer_count]
-    console.log(file)
-    fs.readFile(file, function (err, data) {
-        if (err) { throw err }
+    if(file == undefined){
+      transfer_count++
+      module.nextAwsUpload()
+    }else{
+      fs.readFile(file, function (err, data) {
+          if (err) { throw err }
 
-        // Buffer Pattern; how to handle buffers; straw, intake/outtake analogy
-        var base64data = new Buffer(data, 'binary');
+          // Buffer Pattern; how to handle buffers; straw, intake/outtake analogy
+          var base64data = new Buffer(data, 'binary');
 
-        let type = 'application/octet-stream',
-          ext = file.split('.')
+          let type = 'application/octet-stream',
+            ext = file.split('.')
 
-        switch(ext[ext.length-1]){
-          case 'txt':
-            type = 'plain/text'
-          break;
-          case 'html':
-            type = 'text/html' //application/xhtml+xml
-          break;
-          case 'xml':
-            type = 'application/xml'
-          break;
-          case 'png':
-            type = 'image/png'
-          break;
-          case 'zip':
-            type = 'application/zip'
-          break;
-          case 'ico':
-            type = 'image/x-icon'
-          break;
-          case 'gif':
-            type = 'image/gif'
-          break;
-          case 'mp4':
-            type = 'video/mp4'
-          break;
-        }
+          switch(ext[ext.length-1]){
+            case 'txt':
+              type = 'plain/text'
+            break;
+            case 'html':
+              type = 'text/html' //application/xhtml+xml
+            break;
+            case 'xml':
+              type = 'application/xml'
+            break;
+            case 'png':
+              type = 'image/png'
+            break;
+            case 'zip':
+              type = 'application/zip'
+            break;
+            case 'ico':
+              type = 'image/x-icon'
+            break;
+            case 'gif':
+              type = 'image/gif'
+            break;
+            case 'mp4':
+              type = 'video/mp4'
+            break;
+          }
 
-        //This is the last file, let the frontend know we are almost done...
-        if(file.indexOf('png.zip')>-1){
-          update_callback('aws',1)
-        }
+          //This is the last file, let the frontend know we are almost done...
+          if(file.indexOf('png.zip')>-1){
+            update_callback('aws',1)
+          }
 
-        s3.putObject({
-           'Bucket': 'svift-vis-output',
-            'Key': process.env.S3_FOLDER+file.substr(file.indexOf('output')+6),
-            'Body': base64data,
-            'ACL': 'public-read',
-            'ContentType': type
-         }, function (resp) {
-            if(resp){
-              console.log(resp)
-            }
-            
-            transfer_count++
-            module.nextAwsUpload()
-        })
-    })
+          s3.putObject({
+             'Bucket': 'svift-vis-output',
+              'Key': process.env.S3_FOLDER+file.substr(file.indexOf('output')+6),
+              'Body': base64data,
+              'ACL': 'public-read',
+              'ContentType': type
+           }, function (resp) {
+              if(resp){
+                console.log(resp)
+              }
+              
+              transfer_count++
+              module.nextAwsUpload()
+          })
+      })
+    }
   }
 
   return module;
