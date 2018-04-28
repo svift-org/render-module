@@ -125,10 +125,14 @@ var render = (function () {
     })
   }
 
+  var start;
+
   module.render_part3 = function(){
     //4. GIF
+    console.log('gif start', render_data.id)
+    start = new Date().getTime()
     rGif.render(rootDir + path + render_data.id, config.video.output.width, config.video.output.height, module.render_part5)
-    update_callback('gif',1)
+    
   }
 
   //Removing video component temporarily
@@ -139,6 +143,9 @@ var render = (function () {
   }*/
 
   module.render_part5 = function(){
+    console.log('gif done', render_data.id, new Date().getTime() - start)
+    update_callback('gif',1)
+
     //6. Bundle Complete ZIPs
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
@@ -155,7 +162,7 @@ var render = (function () {
           { class:'zip', icon:'zip', file:render_data.id, name:'All Visualisations'},
           { class:'zip', icon:'zip', file:'social', name:'Social Media'},
           { class:'zip', icon:'zip', file:'png', name:'PNG Sequence'},
-          { class:'zip', icon:'zip', file:'svg', name:'SVG Sequence'}
+          { class:'zip', icon:'zip', file:'svg', name:'SVG'}
         ],
         html:true
       }
@@ -177,6 +184,17 @@ var render = (function () {
             }
           })
         })
+
+        let index = false
+        render_data.transfer.forEach((t,i)=>{
+          if(t.indexOf('png.zip')>-1){
+            index = i
+          }
+        })
+        
+        if(index){
+          render_data.transfer.push(render_data.transfer.slice(index,1)[0])
+        }
 
         module.nextAwsUpload()
       })
@@ -201,57 +219,67 @@ var render = (function () {
 
   module.awsUpload = function(){
     let file = render_data.transfer[transfer_count]
-    fs.readFile(file, function (err, data) {
-        if (err) { throw err }
+    if(file == undefined){
+      transfer_count++
+      module.nextAwsUpload()
+    }else{
+      fs.readFile(file, function (err, data) {
+          if (err) { throw err }
 
-        // Buffer Pattern; how to handle buffers; straw, intake/outtake analogy
-        var base64data = new Buffer(data, 'binary');
+          // Buffer Pattern; how to handle buffers; straw, intake/outtake analogy
+          var base64data = new Buffer(data, 'binary');
 
-        let type = 'application/octet-stream',
-          ext = file.split('.')
+          let type = 'application/octet-stream',
+            ext = file.split('.')
 
-        switch(ext[ext.length-1]){
-          case 'txt':
-            type = 'plain/text'
-          break;
-          case 'html':
-            type = 'text/html' //application/xhtml+xml
-          break;
-          case 'xml':
-            type = 'application/xml'
-          break;
-          case 'png':
-            type = 'image/png'
-          break;
-          case 'zip':
-            type = 'application/zip'
-          break;
-          case 'ico':
-            type = 'image/x-icon'
-          break;
-          case 'gif':
-            type = 'image/gif'
-          break;
-          case 'mp4':
-            type = 'video/mp4'
-          break;
-        }
+          switch(ext[ext.length-1]){
+            case 'txt':
+              type = 'plain/text'
+            break;
+            case 'html':
+              type = 'text/html' //application/xhtml+xml
+            break;
+            case 'xml':
+              type = 'application/xml'
+            break;
+            case 'png':
+              type = 'image/png'
+            break;
+            case 'zip':
+              type = 'application/zip'
+            break;
+            case 'ico':
+              type = 'image/x-icon'
+            break;
+            case 'gif':
+              type = 'image/gif'
+            break;
+            case 'mp4':
+              type = 'video/mp4'
+            break;
+          }
 
-        s3.putObject({
-           'Bucket': 'svift-vis-output',
-            'Key': process.env.S3_FOLDER+file.substr(file.indexOf('output')+6),
-            'Body': base64data,
-            'ACL': 'public-read',
-            'ContentType': type
-         }, function (resp) {
-            if(resp){
-              console.log(resp)
-            }
-            
-            transfer_count++
-            module.nextAwsUpload()
-        })
-    })
+          //This is the last file, let the frontend know we are almost done...
+          if(file.indexOf('png.zip')>-1){
+            update_callback('aws',1)
+          }
+
+          s3.putObject({
+             'Bucket': 'svift-vis-output',
+              'Key': process.env.S3_FOLDER+file.substr(file.indexOf('output')+6),
+              'Body': base64data,
+              'ACL': 'public-read',
+              'ContentType': type
+           }, function (resp) {
+              if(resp){
+                console.log(resp)
+              }
+              
+              transfer_count++
+              module.nextAwsUpload()
+          })
+      })
+    }
   }
 
   return module;
