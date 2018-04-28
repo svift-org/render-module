@@ -49,10 +49,10 @@ var render = (function () {
     s3 = new aws.S3()
 
     //init HTML
-    rHtml.init(rootDir)
+    rHtml.init(rootDir);
 
     //init nightmare
-    (rNightmare.init(module.renderCallback, update_callback, module.socialCallback, config))
+    rNightmare.init(module.renderCallback, update_callback, module.socialCallback, config)
       .then(()=>{
         console.log('nightmare running')
       })
