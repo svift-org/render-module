@@ -55,6 +55,7 @@ var render = (function () {
     rNightmare.init(module.renderCallback, update_callback, module.socialCallback, config)
       .then(()=>{
         console.log('nightmare running')
+        module.renderCallback('initDone')
       })
       .catch(()=>{
         console.log('nightmare not running')
@@ -117,6 +118,7 @@ var render = (function () {
     (rNightmare.render(data.params, data.id, path+data.id, update_callback))
       .then(()=>{
         console.log('rendering done')
+        module.renderCallback('renderDone')
       })
       .catch(()=>{
         console.log('rendering error')
