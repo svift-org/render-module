@@ -115,7 +115,7 @@ var render = (function () {
 
     //3. Nightmare
     //TODO: //3.2 > Final frame (SVG/PNG > JPEG Social Media Sizes)
-    (rNightmare.render(data.params, data.id, path+data.id, update_callback))
+    rNightmare.render(data.params, data.id, path+data.id, update_callback)
       .then(()=>{
         console.log('rendering done')
         module.renderCallback('renderDone')
