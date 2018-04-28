@@ -52,7 +52,13 @@ var render = (function () {
     rHtml.init(rootDir)
 
     //init nightmare
-    rNightmare.init(module.renderCallback, update_callback, module.socialCallback, config)
+    (rNightmare.init(module.renderCallback, update_callback, module.socialCallback, config))
+      .then(()=>{
+        console.log('nightmare running')
+      })
+      .catch(()=>{
+        console.log('nightmare not running')
+      })
   }
 
   module.renderCallback = function(msg){
@@ -108,7 +114,13 @@ var render = (function () {
 
     //3. Nightmare
     //TODO: //3.2 > Final frame (SVG/PNG > JPEG Social Media Sizes)
-    rNightmare.render(data.params, data.id, path+data.id, update_callback);
+    (rNightmare.render(data.params, data.id, path+data.id, update_callback))
+      .then(()=>{
+        console.log('rendering done')
+      })
+      .catch(()=>{
+        console.log('rendering error')
+      })
   }
 
   module.render_part2 = function(){
