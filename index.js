@@ -56,6 +56,7 @@ var render = (function () {
   }
 
   module.renderCallback = function(msg){
+    console.log('render callback', msg);
     if(msg == 'initDone'){
       init_callback()
     }else if(msg == 'renderDone'){
@@ -76,6 +77,8 @@ var render = (function () {
         }
       })
     })
+
+    console.log('social done');
 
     module.nextAwsUpload()
   }
