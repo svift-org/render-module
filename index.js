@@ -128,15 +128,17 @@ var render = (function () {
   module.render_part2 = function(){
     //Implement Feedback, so each finished element can already be accessed by the user
     //6. Bundle Sequence ZIPs
-    renderBundle.bundle(rootDir + path + render_data.id+'/svg', false, function(){
-      update_callback('svg',1)
-      renderBundle.bundle(rootDir + path + render_data.id+'/png', false, function(){
-        update_callback('png',1)
-        renderBundle.bundle(rootDir + path + render_data.id+'/social', false, function(){
-          module.render_part3()      
-        })
-      })
-    })
+    //TEMPORARY: AWS UPLOAD IS QUITE SLOW THEREFORE NO SVG AND PNG ZIPS AT THIS TIME
+    // renderBundle.bundle(rootDir + path + render_data.id+'/svg', false, function(){
+    //   update_callback('svg',1)
+    // renderBundle.bundle(rootDir + path + render_data.id+'/png', false, function(){
+    //   update_callback('png',1)
+    //   renderBundle.bundle(rootDir + path + render_data.id+'/social', false, function(){
+    //     module.render_part3()      
+    //   })
+    // })
+    // })
+    module.render_part3()      
   }
 
   var start;
@@ -161,7 +163,7 @@ var render = (function () {
     update_callback('gif',1)
 
     //6. Bundle Complete ZIPs
-    utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
+    //utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
     utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
     renderBundle.bundle(rootDir + path + render_data.id, true, function(){
       upload_state = 'all';
@@ -170,13 +172,14 @@ var render = (function () {
         date:Date.now(),
         social:[],
         files:[
-          { class:'zip', icon:'zip', file:'gif', name:'GIF Animation'}
+          { class:'zip', icon:'zip', file:'gif', name:'GIF Animation'},
+          { class:'zip', icon:'zip', file:'svg', name:'SVG'}
         ],
         zips:[
           { class:'zip', icon:'zip', file:render_data.id, name:'All Visualisations'},
-          { class:'zip', icon:'zip', file:'social', name:'Social Media'},
-          { class:'zip', icon:'zip', file:'png', name:'PNG Sequence'},
-          { class:'zip', icon:'zip', file:'svg', name:'SVG'}
+          { class:'zip', icon:'zip', file:'social', name:'Social Media'}//,
+          //{ class:'zip', icon:'zip', file:'png', name:'PNG Sequence'},
+          //{ class:'zip', icon:'zip', file:'svg', name:'SVG'}
         ],
         html:true
       }
@@ -199,16 +202,16 @@ var render = (function () {
           })
         })
 
-        let index = false
-        render_data.transfer.forEach((t,i)=>{
-          if(t.indexOf('png.zip')>-1){
-            index = i
-          }
-        })
+        // let index = false
+        // render_data.transfer.forEach((t,i)=>{
+        //   if(t.indexOf('png.zip')>-1){
+        //     index = i
+        //   }
+        // })
         
-        if(index){
-          render_data.transfer.push(render_data.transfer.slice(index,1)[0])
-        }
+        // if(index){
+        //   render_data.transfer.push(render_data.transfer.slice(index,1)[0])
+        // }
 
         module.nextAwsUpload()
       })
