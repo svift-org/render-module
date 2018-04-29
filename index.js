@@ -108,7 +108,7 @@ var render = (function () {
     fs.mkdirSync(rootDir + path+data.id);
     fs.mkdirSync(rootDir + path+data.id + '/social');
     fs.mkdirSync(rootDir + path+data.id + '/html');
-    fs.mkdirSync(rootDir + path+data.id + '/svg');
+    //fs.mkdirSync(rootDir + path+data.id + '/svg');
     fs.mkdirSync(rootDir + path+data.id + '/png');
 
     //2. HTML
@@ -168,7 +168,7 @@ var render = (function () {
 
     //6. Bundle Complete ZIPs
     //utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
-    //utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
+    utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
     
     //renderBundle.bundle(rootDir + path + render_data.id, true, function(){
       upload_state = 'all';
