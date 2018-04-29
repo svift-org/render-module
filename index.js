@@ -233,6 +233,8 @@ var render = (function () {
 
         update_callback('zip',1)
         render_callback()
+
+        console.log('rendering complete')
       }else if(upload_state == 'social'){
         update_callback('social', 1)
       }
@@ -240,8 +242,8 @@ var render = (function () {
   }
 
   module.awsUpload = function(){
-    console.log(render_data.transfer)
-    console.log(render_data.transfer[transfer_count])
+    // console.log(render_data.transfer)
+    // console.log(render_data.transfer[transfer_count])
     let file = render_data.transfer[transfer_count]
     if(file == undefined){
       transfer_count++
@@ -284,7 +286,7 @@ var render = (function () {
           }
 
           //This is the last file, let the frontend know we are almost done...
-          if(file.indexOf('png.zip')>-1){
+          if(file.indexOf('.gif')>-1){
             update_callback('aws',1)
           }
 
