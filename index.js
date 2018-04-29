@@ -32,7 +32,8 @@ var render = (function () {
     rootDir,
     s3,
     scan_path,
-    upload_state
+    upload_state,
+    gif_init = false
 
   /**
   * Initiate the rendering process by sending a data object containing params, vis and data (see data/example.json for structure)
@@ -94,6 +95,7 @@ var render = (function () {
     console.log('render', data.id, data.params.vis.type)
     render_callback = callback
     render_data = data
+    gif_init = false
 
     //TODO: Make rendering phases optional via config or something
 
@@ -145,10 +147,12 @@ var render = (function () {
 
   module.render_part3 = function(){
     //4. GIF
-    console.log('gif start', render_data.id)
-    start = new Date().getTime()
-    rGif.render(rootDir + path + render_data.id, config.video.output.width, config.video.output.height, module.render_part5)
-    
+    if(!gif_init){
+      gif_init = true
+      console.log('gif start', render_data.id)
+      start = new Date().getTime()
+      rGif.render(rootDir + path + render_data.id, config.video.output.width, config.video.output.height, module.render_part5)
+    }
   }
 
   //Removing video component temporarily
