@@ -240,6 +240,8 @@ var render = (function () {
   }
 
   module.awsUpload = function(){
+    console.log(render_data.transfer)
+    console.log(render_data.transfer[transfer_count])
     let file = render_data.transfer[transfer_count]
     if(file == undefined){
       transfer_count++
