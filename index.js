@@ -164,8 +164,9 @@ var render = (function () {
 
     //6. Bundle Complete ZIPs
     //utils.deleteFolderRecursive(rootDir + path+render_data.id+'/svg')
-    utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
-    renderBundle.bundle(rootDir + path + render_data.id, true, function(){
+    //utils.deleteFolderRecursive(rootDir + path+render_data.id+'/png')
+    
+    //renderBundle.bundle(rootDir + path + render_data.id, true, function(){
       upload_state = 'all';
 
       var contents = {
@@ -176,8 +177,8 @@ var render = (function () {
           { class:'zip', icon:'zip', file:'svg', name:'SVG'}
         ],
         zips:[
-          { class:'zip', icon:'zip', file:render_data.id, name:'All Visualisations'},
-          { class:'zip', icon:'zip', file:'social', name:'Social Media'}//,
+          //{ class:'zip', icon:'zip', file:render_data.id, name:'All Visualisations'},
+          //{ class:'zip', icon:'zip', file:'social', name:'Social Media'}//,
           //{ class:'zip', icon:'zip', file:'png', name:'PNG Sequence'},
           //{ class:'zip', icon:'zip', file:'svg', name:'SVG'}
         ],
@@ -215,7 +216,7 @@ var render = (function () {
 
         module.nextAwsUpload()
       })
-    })
+    //})
   }
 
   module.nextAwsUpload = function(){
