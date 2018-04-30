@@ -55,16 +55,16 @@ var render = (function () {
     //init nightmare
     rNightmare.init(module.renderCallback, update_callback, module.socialCallback, config)
       .then(()=>{
-        console.log('nightmare running')
+        //console.log('nightmare running')
         module.renderCallback('initDone')
       })
       .catch(()=>{
-        console.log('nightmare not running')
+        //console.log('nightmare not running')
       })
   }
 
   module.renderCallback = function(msg){
-    console.log('render callback', msg);
+    //console.log('render callback', msg);
     if(msg == 'initDone'){
       init_callback()
     }else if(msg == 'renderDone'){
@@ -86,13 +86,13 @@ var render = (function () {
       })
     })
 
-    console.log('social done');
+    //console.log('social done');
 
     module.nextAwsUpload()
   }
 
   module.render = function (data, callback) {
-    console.log('render', data.id, data.params.vis.type)
+    //console.log('render', data.id, data.params.vis.type)
     render_callback = callback
     render_data = data
     gif_init = false
@@ -119,7 +119,7 @@ var render = (function () {
     //TODO: //3.2 > Final frame (SVG/PNG > JPEG Social Media Sizes)
     rNightmare.render(data.params, data.id, path+data.id, update_callback)
       .then(()=>{
-        console.log('rendering done')
+        //console.log('rendering done')
         module.renderCallback('renderDone')
       })
       .catch(()=>{
@@ -149,7 +149,7 @@ var render = (function () {
     //4. GIF
     if(!gif_init){
       gif_init = true
-      console.log('gif start', render_data.id)
+      //console.log('gif start', render_data.id)
       start = new Date().getTime()
       rGif.render(rootDir + path + render_data.id, config.video.output.width, config.video.output.height, module.render_part5)
     }
@@ -163,7 +163,7 @@ var render = (function () {
   }*/
 
   module.render_part5 = function(){
-    console.log('gif done', render_data.id, new Date().getTime() - start)
+    //console.log('gif done', render_data.id, new Date().getTime() - start)
     update_callback('gif',1)
 
     //6. Bundle Complete ZIPs
@@ -234,7 +234,7 @@ var render = (function () {
         update_callback('zip',1)
         render_callback()
 
-        console.log('rendering complete')
+        //console.log('rendering complete')
       }else if(upload_state == 'social'){
         update_callback('social', 1)
       }
